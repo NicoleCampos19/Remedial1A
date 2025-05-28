@@ -1,10 +1,10 @@
 import express from "express";
-import recoveryPasswordController from "../controllers/recoveryPasswordController.js";
+import recoveryPassword from "../controllers/recoveryPassword.js";
 
 const router = express.Router();
 
-router.route("/requestCode").post(recoveryPasswordController.requestCode);
-router.route("/verifyCode").post(recoveryPasswordController.verifyCode);
-router.route("/newPassword").post(recoveryPasswordController.newPassword);
+router.route("/requestCode").post(recoveryPassword.requestCode);
+router.route("/verifyCode").post(recoveryPassword.verifyCode);
+router.route("/newPassword").post(recoveryPassword.newPassword);
 
 export default router;

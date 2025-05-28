@@ -1,7 +1,7 @@
 import jsonwebtoken from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
 
-import clientsModel from "../models/Doctor.js";
+import DoctorModel from "../models/Doctor.js";
 
 import { sendEmail, HTMLRecoveryEmail } from "../utils/mailRecoveryPassword.js";
 import { config } from "../config.js";
@@ -16,8 +16,7 @@ recoveryPasswordController.requestCode = async (req, res) => {
     let userFound;
     let userType;
 
-    //Verificamos que el usuario exista
-    userFound = await clientsModel.findOne({ email });
+    userFound = await DoctorModel.findOne({ email });
     if (userFound) {
       userType = "Doctor";
     } 
@@ -117,7 +116,7 @@ recoveryPasswordController.newPassword = async (req, res) => {
 
     // ULTIMO PASO - Actualizar la contraseña
     if (userType === "Doctor") {
-      updatedUser = await clientsModel.findOneAndUpdate(
+      updatedUser = await DoctorModel.findOneAndUpdate(
         { email },
         { password: hashedPassword },
         { new: true }
